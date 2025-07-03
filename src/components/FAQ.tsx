@@ -47,7 +47,7 @@ const FAQ = () => {
   return (
     <section className="py-20 bg-slate-50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             Frequently Asked Questions
           </h2>
@@ -61,31 +61,38 @@ const FAQ = () => {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl transform hover:-translate-y-1 animate-slide-up"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
+                  className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-slate-50 transition-all duration-300 group"
                 >
-                  <h3 className="text-lg font-semibold text-slate-900 pr-4">
+                  <h3 className="text-lg font-semibold text-slate-900 pr-4 group-hover:text-navy-600 transition-colors duration-300">
                     {faq.question}
                   </h3>
-                  {openIndex === index ? (
-                    <ChevronUp className="h-6 w-6 text-navy-600 flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="h-6 w-6 text-slate-400 flex-shrink-0" />
-                  )}
+                  <div className="transform transition-transform duration-500 ease-in-out">
+                    {openIndex === index ? (
+                      <ChevronUp className="h-6 w-6 text-navy-600 flex-shrink-0 transform rotate-180 transition-all duration-500" />
+                    ) : (
+                      <ChevronDown className="h-6 w-6 text-slate-400 flex-shrink-0 group-hover:text-navy-600 transition-all duration-300" />
+                    )}
+                  </div>
                 </button>
                 
-                {openIndex === index && (
-                  <div className="px-8 pb-6 animate-fade-in">
+                <div 
+                  className={`overflow-hidden transition-all duration-700 ease-in-out ${
+                    openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-8 pb-6">
                     <div className="border-t border-slate-200 pt-6">
-                      <p className="text-slate-600 leading-relaxed">
+                      <p className="text-slate-600 leading-relaxed animate-fade-in">
                         {faq.answer}
                       </p>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>

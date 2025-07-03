@@ -31,12 +31,12 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection('golden-visa')}
+            <Link
+              to="/golden-visa"
               className="text-slate-700 hover:text-navy-600 font-medium transition-colors"
             >
               GOLDEN VISA
-            </button>
+            </Link>
             <button
               onClick={() => scrollToSection('testimonials')}
               className="text-slate-700 hover:text-navy-600 font-medium transition-colors"
@@ -64,12 +64,13 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden py-6 border-t border-slate-200 bg-white">
             <div className="flex flex-col space-y-4">
-              <button
-                onClick={() => scrollToSection('golden-visa')}
+              <Link
+                to="/golden-visa"
+                onClick={() => setIsOpen(false)}
                 className="text-slate-700 hover:text-navy-600 font-medium text-left py-2 transition-colors"
               >
                 GOLDEN VISA
-              </button>
+              </Link>
               <button
                 onClick={() => scrollToSection('testimonials')}
                 className="text-slate-700 hover:text-navy-600 font-medium text-left py-2 transition-colors"

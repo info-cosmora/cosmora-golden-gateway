@@ -31,12 +31,12 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              to="/golden-visa"
+            <button
+              onClick={() => scrollToSection('golden-visa-benefits')}
               className="text-slate-700 hover:text-navy-600 font-medium transition-colors"
             >
               GOLDEN VISA
-            </Link>
+            </button>
             <button
               onClick={() => scrollToSection('testimonials')}
               className="text-slate-700 hover:text-navy-600 font-medium transition-colors"
@@ -45,7 +45,10 @@ const Navigation = () => {
             </button>
             <Link
               to="/contact"
-              className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-6 py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105"
+              className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-6 py-3 rounded-full font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:-translate-y-1 active:scale-95"
+              style={{
+                boxShadow: '0 4px 15px rgba(251, 191, 36, 0.4)',
+              }}
             >
               CONTACT US
             </Link>
@@ -64,13 +67,12 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden py-6 border-t border-slate-200 bg-white">
             <div className="flex flex-col space-y-4">
-              <Link
-                to="/golden-visa"
-                onClick={() => setIsOpen(false)}
+              <button
+                onClick={() => scrollToSection('golden-visa-benefits')}
                 className="text-slate-700 hover:text-navy-600 font-medium text-left py-2 transition-colors"
               >
                 GOLDEN VISA
-              </Link>
+              </button>
               <button
                 onClick={() => scrollToSection('testimonials')}
                 className="text-slate-700 hover:text-navy-600 font-medium text-left py-2 transition-colors"
@@ -80,7 +82,7 @@ const Navigation = () => {
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-6 py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 w-fit"
+                className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-6 py-3 rounded-full font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 w-fit transform hover:scale-105 hover:shadow-xl"
               >
                 CONTACT US
               </Link>

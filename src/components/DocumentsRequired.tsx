@@ -1,11 +1,11 @@
 
-import { FileText, CreditCard, Home, Briefcase, GraduationCap, Heart } from "lucide-react";
+import { FileText, CreditCard, GraduationCap, Heart } from "lucide-react";
 
 const DocumentsRequired = () => {
   const documentCategories = [
     {
       icon: FileText,
-      title: "Identity Documents",
+      title: "Personal ID/Passport",
       documents: [
         "Valid passport with minimum 6 months validity",
         "Recent passport-sized photographs",
@@ -14,33 +14,23 @@ const DocumentsRequired = () => {
       ]
     },
     {
-      icon: CreditCard,
-      title: "Financial Documents",
-      documents: [
-        "Bank statements (last 6 months)",
-        "Salary certificates or employment letter",
-        "Investment portfolio statements",
-        "Property ownership documents"
-      ]
-    },
-    {
       icon: GraduationCap,
-      title: "Educational & Professional",
+      title: "Education/Job Letters",
       documents: [
         "Educational certificates (attested)",
         "Professional qualifications",
         "Experience certificates",
-        "License certifications (if applicable)"
+        "Employment letters and contracts"
       ]
     },
     {
-      icon: Heart,
-      title: "Medical & Personal",
+      icon: CreditCard,
+      title: "Financial Proof/ITR",
       documents: [
-        "Medical fitness certificate",
-        "Police clearance certificate",
-        "Marriage certificate (if applicable)",
-        "Health insurance documents"
+        "Income Tax Returns (ITR)",
+        "Bank statements (last 6 months)",
+        "Investment portfolio statements",
+        "Property ownership documents"
       ]
     }
   ];
@@ -52,12 +42,9 @@ const DocumentsRequired = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             Documents Required
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Our comprehensive checklist ensures you have all necessary documentation for a smooth application process.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {documentCategories.map((category, index) => (
             <div
               key={index}

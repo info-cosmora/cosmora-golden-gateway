@@ -5,49 +5,46 @@ const Benefits = () => {
   const benefits = [
     {
       icon: Shield,
-      title: "Secure Investment",
-      description: "Government-backed program ensuring long-term residency security"
-    },
-    {
-      icon: Clock,
-      title: "Fast Processing",
-      description: "Streamlined application process with expedited review"
-    },
-    {
-      icon: Trophy,
-      title: "Premium Service",
-      description: "White-glove assistance from application to approval"
+      title: "Long-Term Residency",
+      description: "Stay 5–10 years without needing a sponsor"
     },
     {
       icon: Users,
-      title: "Family Inclusion",
-      description: "Extend visa benefits to spouse and children"
+      title: "Family Sponsorship",
+      description: "Include spouse, children, and domestic staff"
+    },
+    {
+      icon: Trophy,
+      title: "Business & Investment Opportunities",
+      description: "Own 100% of your business and invest freely"
     },
     {
       icon: Globe,
-      title: "Global Access",
-      description: "Visa-free travel to 180+ countries worldwide"
+      title: "Multiple Entry & Re-Entry",
+      description: "Travel flexibly without losing residency"
+    },
+    {
+      icon: Clock,
+      title: "Tax-Free Income",
+      description: "Zero personal income tax"
     },
     {
       icon: Star,
-      title: "Exclusive Benefits",
-      description: "Access to premium healthcare, education, and business opportunities"
+      title: "Premium Lifestyle & Stability",
+      description: "Enjoy Dubai's world-class amenities"
     }
   ];
 
   return (
-    <section id="golden-visa" className="py-20 bg-slate-50">
+    <section id="golden-visa-benefits" className="py-20 bg-slate-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Why Choose UAE Golden Visa?
+            What Makes the Dubai Golden Visa So Powerful?
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Experience unparalleled advantages with the UAE's most prestigious residency program, designed for global leaders and visionaries.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
           {benefits.map((benefit, index) => (
             <div
               key={index}
@@ -65,6 +62,17 @@ const Benefits = () => {
               </p>
             </div>
           ))}
+        </div>
+
+        <div className="text-center animate-fade-in">
+          <div className="bg-gradient-to-r from-navy-600 to-slate-800 p-8 rounded-2xl shadow-xl max-w-4xl mx-auto">
+            <p className="text-2xl md:text-3xl font-bold text-white leading-relaxed">
+              Live in Dubai or just hold your residency — it's your choice.
+            </p>
+            <p className="text-xl text-slate-200 mt-4 font-semibold">
+              No Minimum Stay required.
+            </p>
+          </div>
         </div>
       </div>
     </section>

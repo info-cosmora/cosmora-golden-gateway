@@ -7,36 +7,24 @@ const FAQ = () => {
 
   const faqs = [
     {
-      question: "What is the UAE Golden Visa?",
-      answer: "The UAE Golden Visa is a long-term residency visa program that allows investors, entrepreneurs, talented individuals, and their families to live, work, and study in the UAE for extended periods, typically 5-10 years, with the possibility of renewal."
+      question: "Do I have to live in the UAE to keep the visa?",
+      answer: "No. Golden Visa holders can live outside the UAE without cancellation. Maintaining UAE ties through investments or periodic visits is recommended."
     },
     {
-      question: "Who is eligible for the Golden Visa?",
-      answer: "Eligibility includes investors with minimum investments of AED 2 million in real estate or AED 10 million in other sectors, entrepreneurs with innovative projects, skilled professionals in medicine, engineering, science, and other specialized fields, and outstanding students."
+      question: "What's the difference between a Golden Visa and a Blue Visa?",
+      answer: "• Golden Visa: 5–10 year residency for investors, professionals, creatives, students.\n• Blue Visa: 10-year residency for significant contributors to sustainability efforts."
     },
     {
-      question: "How long does the application process take?",
-      answer: "The typical processing time ranges from 30-90 days, depending on the visa category and completeness of documentation. Our premium service often expedites this timeline through proper preparation and strategic submission."
+      question: "Can I include my kids or domestic helper in my visa application?",
+      answer: "Yes. You can sponsor spouse, children of any age, and domestic staff."
     },
     {
-      question: "Can I include my family members?",
-      answer: "Yes, Golden Visa holders can sponsor their spouse, children (regardless of age), and in some cases, parents and domestic helpers. Family members receive the same visa duration as the primary applicant."
+      question: "How long does the process take?",
+      answer: "Typically 2–4 weeks:\n• Eligibility assessment: 1–2 days\n• Documentation: 5–10 days\n• Government processing: 5–15 days"
     },
     {
-      question: "What are the investment requirements?",
-      answer: "Investment requirements vary by category: AED 2 million for real estate (with specific conditions), AED 10 million for other investments, or meeting specific criteria for skilled professionals, entrepreneurs, and exceptional talents."
-    },
-    {
-      question: "Do I need to maintain continuous residency?",
-      answer: "No, unlike other UAE visas, Golden Visa holders are not required to spend a minimum number of days in the UAE annually. However, you must visit at least once every 180 days to maintain the visa validity."
-    },
-    {
-      question: "What services does Cosmora provide?",
-      answer: "We offer comprehensive Golden Visa services including eligibility assessment, investment advisory, document preparation and attestation, application submission, liaison with government authorities, and ongoing support throughout the process."
-    },
-    {
-      question: "Are there any restrictions on the Golden Visa?",
-      answer: "Golden Visa holders enjoy most rights of UAE residents, including opening bank accounts, purchasing property, starting businesses, and accessing healthcare and education. Some government positions may still require UAE citizenship."
+      question: "What if my application is rejected?",
+      answer: "We'll help you understand the reason, reapply, or explore alternatives. Pre-screening is provided to reduce rejection risk."
     }
   ];
 
@@ -61,21 +49,21 @@ const FAQ = () => {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl transform hover:-translate-y-1 animate-slide-up"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-700 ease-in-out hover:shadow-xl transform hover:-translate-y-1 animate-slide-up"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-slate-50 transition-all duration-300 group"
+                  className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-slate-50 transition-all duration-500 ease-in-out group"
                 >
-                  <h3 className="text-lg font-semibold text-slate-900 pr-4 group-hover:text-navy-600 transition-colors duration-300">
+                  <h3 className="text-lg font-semibold text-slate-900 pr-4 group-hover:text-navy-600 transition-colors duration-500 ease-in-out">
                     {faq.question}
                   </h3>
-                  <div className="transform transition-transform duration-500 ease-in-out">
+                  <div className="transform transition-all duration-700 ease-in-out">
                     {openIndex === index ? (
-                      <ChevronUp className="h-6 w-6 text-navy-600 flex-shrink-0 transform rotate-180 transition-all duration-500" />
+                      <ChevronUp className="h-6 w-6 text-navy-600 flex-shrink-0 transform rotate-180 transition-all duration-700 ease-in-out" />
                     ) : (
-                      <ChevronDown className="h-6 w-6 text-slate-400 flex-shrink-0 group-hover:text-navy-600 transition-all duration-300" />
+                      <ChevronDown className="h-6 w-6 text-slate-400 flex-shrink-0 group-hover:text-navy-600 transition-all duration-500 ease-in-out" />
                     )}
                   </div>
                 </button>
@@ -87,9 +75,9 @@ const FAQ = () => {
                 >
                   <div className="px-8 pb-6">
                     <div className="border-t border-slate-200 pt-6">
-                      <p className="text-slate-600 leading-relaxed animate-fade-in">
+                      <div className="text-slate-600 leading-relaxed whitespace-pre-line animate-fade-in">
                         {faq.answer}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>

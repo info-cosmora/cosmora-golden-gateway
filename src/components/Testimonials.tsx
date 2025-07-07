@@ -1,23 +1,24 @@
 
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Quote, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const testimonials = [
     {
-      name: "Ahmed Al Mansouri",
+      name: "Rajesh Kumar",
       title: "Tech Entrepreneur",
-      location: "Dubai, UAE",
-      content: "Cosmora made my Golden Visa process incredibly smooth. Their attention to detail and premium service exceeded all expectations. I couldn't have asked for a better experience.",
+      location: "Mumbai, India",
+      content: "Got my 10-year visa in just 21 days – Helped relocate my family with zero hassle. Investment + visa guided with clarity.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80"
     },
     {
       name: "Priya Sharma",
       title: "Investment Banker",
-      location: "Mumbai, India",
+      location: "Delhi, India",
       content: "The team at Cosmora provided exceptional guidance throughout my application. Their expertise and professionalism made what seemed like a complex process remarkably straightforward.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b386?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80"
@@ -70,7 +71,7 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-4xl mx-auto mb-16">
           {/* Testimonial Card */}
           <div className="bg-slate-50 rounded-3xl p-8 md:p-12 shadow-xl">
             <div className="flex justify-center mb-6">
@@ -142,6 +143,22 @@ const Testimonials = () => {
                 }`}
               />
             ))}
+          </div>
+        </div>
+
+        {/* Free Consultation CTA */}
+        <div className="text-center">
+          <div className="bg-gradient-to-r from-navy-600 to-slate-800 p-8 rounded-2xl shadow-xl max-w-2xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Still have questions?
+            </h3>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-8 py-4 rounded-lg text-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105"
+            >
+              <Phone className="h-5 w-5" />
+              Book a Free Consultation
+            </Link>
           </div>
         </div>
       </div>

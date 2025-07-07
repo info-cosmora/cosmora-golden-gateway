@@ -5,19 +5,19 @@ import { toast } from "@/hooks/use-toast";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    name: '',
+    permanentAddress: '',
+    currentAddress: '',
+    currentITR: '',
+    currentITRValue: '',
+    reasonForApplying: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+    if (!formData.name || !formData.permanentAddress || !formData.currentAddress || !formData.currentITR || !formData.reasonForApplying) {
       toast({
         title: "Please fill in all required fields",
         variant: "destructive",
@@ -29,18 +29,18 @@ const ContactForm = () => {
     console.log('Form submitted:', formData);
     
     toast({
-      title: "Message Sent Successfully!",
+      title: "Application Submitted Successfully!",
       description: "We'll get back to you within 24 hours.",
     });
 
     // Reset form
     setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
+      name: '',
+      permanentAddress: '',
+      currentAddress: '',
+      currentITR: '',
+      currentITRValue: '',
+      reasonForApplying: ''
     });
   };
 
@@ -54,105 +54,103 @@ const ContactForm = () => {
   return (
     <div className="bg-white p-8 rounded-2xl shadow-xl">
       <h2 className="text-3xl font-bold text-slate-900 mb-8">
-        Send us a Message
+        Check Your Eligibility
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <label htmlFor="firstName" className="block text-sm font-semibold text-slate-700 mb-2">
-              First Name *
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
-              placeholder="Enter your first name"
-            />
-          </div>
-          
-          <div>
-            <label htmlFor="lastName" className="block text-sm font-semibold text-slate-700 mb-2">
-              Last Name *
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
-              placeholder="Enter your last name"
-            />
-          </div>
-        </div>
-
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
-            Email Address *
+          <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">
+            Name *
           </label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
-            placeholder="Enter your email address"
+            placeholder="Enter your full name"
           />
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-2">
-            Phone Number
+          <label htmlFor="permanentAddress" className="block text-sm font-semibold text-slate-700 mb-2">
+            Permanent Address *
           </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
+          <textarea
+            id="permanentAddress"
+            name="permanentAddress"
+            rows={3}
+            value={formData.permanentAddress}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
-            placeholder="Enter your phone number"
+            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300 resize-vertical"
+            placeholder="Enter your permanent address"
           />
         </div>
 
         <div>
-          <label htmlFor="subject" className="block text-sm font-semibold text-slate-700 mb-2">
-            Subject
+          <label htmlFor="currentAddress" className="block text-sm font-semibold text-slate-700 mb-2">
+            Current Address *
+          </label>
+          <textarea
+            id="currentAddress"
+            name="currentAddress"
+            rows={3}
+            value={formData.currentAddress}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300 resize-vertical"
+            placeholder="Enter your current address"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="currentITR" className="block text-sm font-semibold text-slate-700 mb-2">
+            Current ITR *
           </label>
           <select
-            id="subject"
-            name="subject"
-            value={formData.subject}
+            id="currentITR"
+            name="currentITR"
+            value={formData.currentITR}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
           >
-            <option value="">Select a subject</option>
-            <option value="golden-visa-inquiry">Golden Visa Inquiry</option>
-            <option value="investment-advisory">Investment Advisory</option>
-            <option value="document-assistance">Document Assistance</option>
-            <option value="general-consultation">General Consultation</option>
-            <option value="other">Other</option>
+            <option value="">Select ITR range</option>
+            <option value="greater-than-1-crore">Greater than 1 crore</option>
+            <option value="less-than-1-crore">Less than 1 crore</option>
           </select>
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-2">
-            Message *
+          <label htmlFor="currentITRValue" className="block text-sm font-semibold text-slate-700 mb-2">
+            Current ITR Value
           </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={6}
-            value={formData.message}
+          <input
+            type="text"
+            id="currentITRValue"
+            name="currentITRValue"
+            value={formData.currentITRValue}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300 resize-vertical"
-            placeholder="Tell us about your requirements and how we can help you..."
+            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
+            placeholder="Enter your ITR value"
           />
+        </div>
+
+        <div>
+          <label htmlFor="reasonForApplying" className="block text-sm font-semibold text-slate-700 mb-2">
+            Reason for Applying for Golden Visa *
+          </label>
+          <select
+            id="reasonForApplying"
+            name="reasonForApplying"
+            value={formData.reasonForApplying}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
+          >
+            <option value="">Select reason</option>
+            <option value="family-reasons">Family Reasons</option>
+            <option value="business-reasons">Business Reasons</option>
+            <option value="settlement-reasons">Settlement Reasons</option>
+          </select>
         </div>
 
         <button
@@ -160,7 +158,7 @@ const ContactForm = () => {
           className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-8 py-4 rounded-lg text-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
         >
           <Send className="h-5 w-5" />
-          Send Message
+          Submit Application
         </button>
       </form>
     </div>

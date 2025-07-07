@@ -1,26 +1,26 @@
 
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, Search, CheckCircle } from "lucide-react";
+import { ArrowRight, Search, FileText, CheckCircle } from "lucide-react";
 
 const HowItWorks = () => {
   const steps = [
     {
       number: "01",
-      icon: FileText,
-      title: "Initial Consultation",
-      description: "We assess your eligibility and create a personalized strategy for your Golden Visa application."
+      icon: Search,
+      title: "Check Your Eligibility",
+      description: "Submit your details to check your eligibility."
     },
     {
       number: "02",
-      icon: Search,
-      title: "Document Preparation",
-      description: "Our experts handle all documentation, ensuring compliance with UAE government requirements."
+      icon: FileText,
+      title: "Documentation Submission",
+      description: "If eligible, share your documents for submission."
     },
     {
       number: "03",
       icon: CheckCircle,
-      title: "Application & Approval",
-      description: "We submit your application and guide you through the final approval process."
+      title: "Get Your Visa",
+      description: "Post approval, complete medical & biometrics to avail your visa."
     }
   ];
 
@@ -31,9 +31,6 @@ const HowItWorks = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             How It Works?
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Our streamlined three-step process ensures your UAE Golden Visa journey is seamless and stress-free.
-          </p>
         </div>
 
         <div className="max-w-5xl mx-auto">

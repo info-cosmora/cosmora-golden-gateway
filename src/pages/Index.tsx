@@ -13,9 +13,9 @@ import Navigation from "@/components/Navigation";
 
 const Index = () => {
   useEffect(() => {
-    // Add scroll-triggered animations with improved timing
+    // Add scroll-triggered animations with better timing
     const observerOptions = {
-      threshold: 0.15,
+      threshold: 0.1,
       rootMargin: '0px 0px -100px 0px'
     };
 
@@ -23,22 +23,22 @@ const Index = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const target = entry.target as HTMLElement;
-          target.classList.add('animate-fade-in');
+          target.classList.add('animate-slide-up');
           target.style.opacity = '1';
           target.style.transform = 'translateY(0)';
         }
       });
     }, observerOptions);
 
-    // Observe all major sections with improved timing
+    // Observe all major sections with staggered animation
     const sections = document.querySelectorAll('section');
     sections.forEach((section, index) => {
       const htmlSection = section as HTMLElement;
-      // Start with elements hidden
+      // Start with elements hidden for better animation visibility
       htmlSection.style.opacity = '0';
-      htmlSection.style.transform = 'translateY(50px)';
-      htmlSection.style.transition = 'opacity 1.2s ease-out, transform 1.2s ease-out';
-      htmlSection.style.transitionDelay = `${index * 0.1}s`;
+      htmlSection.style.transform = 'translateY(60px)';
+      htmlSection.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+      htmlSection.style.transitionDelay = `${index * 0.2}s`;
       observer.observe(section);
     });
 
@@ -50,7 +50,7 @@ const Index = () => {
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 500);
+      }, 1000);
     }
 
     return () => {
@@ -70,23 +70,6 @@ const Index = () => {
       <Testimonials />
       <FAQ />
       <Footer />
-      
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-in {
-          animation: fadeInUp 0.8s ease-out forwards;
-        }
-      `}</style>
     </div>
   );
 };

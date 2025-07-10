@@ -1,6 +1,7 @@
-
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Phone } from "lucide-react";
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -44,7 +45,7 @@ const FAQ = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto mb-16">
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div
@@ -85,6 +86,22 @@ const FAQ = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Free Consultation CTA - Moved below FAQ */}
+        <div className="text-center animate-fade-in">
+          <div className="bg-gradient-to-r from-navy-600 to-slate-800 p-8 rounded-2xl shadow-xl max-w-2xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Still have questions?
+            </h3>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-8 py-4 rounded-lg text-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105"
+            >
+              <Phone className="h-5 w-5" />
+              Book a Free Consultation
+            </Link>
           </div>
         </div>
       </div>

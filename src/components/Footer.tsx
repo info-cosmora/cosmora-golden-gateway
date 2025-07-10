@@ -8,6 +8,7 @@ const Footer = () => {
 
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== '/') {
+      // If not on homepage, navigate to homepage first then scroll
       window.location.href = `/#${sectionId}`;
       return;
     }
@@ -18,10 +19,6 @@ const Footer = () => {
     }
   };
 
-  const handleFooterLinkClick = (sectionId: string) => {
-    scrollToSection(sectionId);
-  };
-
   return (
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-6 py-16">
@@ -29,7 +26,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl font-bold mb-4">COSMORA</h3>
+              <h3 className="text-2xl font-bold mb-4">COSMORA GLOBAL</h3>
               <p className="text-slate-300 leading-relaxed">
                 Premium UAE Golden Visa services for discerning individuals seeking elite residency solutions.
               </p>
@@ -66,32 +63,32 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => handleFooterLinkClick('about-us')}
-                  className="text-slate-300 hover:text-yellow-400 transition-colors"
+                  onClick={() => scrollToSection('about-us')}
+                  className="text-slate-300 hover:text-yellow-400 transition-colors text-left"
                 >
                   About Us
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleFooterLinkClick('golden-visa-benefits')}
-                  className="text-slate-300 hover:text-yellow-400 transition-colors"
+                  onClick={() => scrollToSection('golden-visa-benefits')}
+                  className="text-slate-300 hover:text-yellow-400 transition-colors text-left"
                 >
                   Golden Visa
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleFooterLinkClick('testimonials')}
-                  className="text-slate-300 hover:text-yellow-400 transition-colors"
+                  onClick={() => scrollToSection('testimonials')}
+                  className="text-slate-300 hover:text-yellow-400 transition-colors text-left"
                 >
                   Client Testimonials
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleFooterLinkClick('faq')}
-                  className="text-slate-300 hover:text-yellow-400 transition-colors"
+                  onClick={() => scrollToSection('faq')}
+                  className="text-slate-300 hover:text-yellow-400 transition-colors text-left"
                 >
                   FAQ
                 </button>
@@ -159,7 +156,7 @@ const Footer = () => {
             </div>
             
             <p className="text-slate-400 text-sm">
-              © {currentYear} Cosmora. All rights reserved.
+              © {currentYear} Cosmora Global. All rights reserved.
             </p>
           </div>
         </div>

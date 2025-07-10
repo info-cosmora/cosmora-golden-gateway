@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -42,11 +42,22 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center animate-fade-in">
         <div className="max-w-4xl mx-auto">
+          {/* Premium Badge */}
+          <div className="mb-8 animate-fade-in">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 backdrop-blur-sm border border-yellow-400/30 text-yellow-300 px-6 py-3 rounded-full text-sm font-semibold">
+              <Award className="h-4 w-4" />
+              Premium UAE Residency Solutions
+            </div>
+          </div>
+
           {/* Brand - Static Logo */}
           <div className="mb-8">
             <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 tracking-tight">
               COSMORA
             </h1>
+            <div className="text-2xl md:text-3xl font-light text-yellow-400 mb-4 tracking-wide">
+              GLOBAL
+            </div>
             <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 mx-auto"></div>
           </div>
 

@@ -33,9 +33,9 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-20 bg-slate-50">
+    <section id="faq" className="py-20 bg-slate-50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             Frequently Asked Questions
           </h2>
@@ -49,8 +49,10 @@ const FAQ = () => {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-700 ease-in-out hover:shadow-xl transform hover:-translate-y-1 animate-slide-up"
-                style={{ animationDelay: `${index * 50}ms` }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-700 ease-in-out hover:shadow-xl transform hover:-translate-y-1"
+                style={{ 
+                  animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
+                }}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
@@ -75,7 +77,7 @@ const FAQ = () => {
                 >
                   <div className="px-8 pb-6">
                     <div className="border-t border-slate-200 pt-6">
-                      <div className="text-slate-600 leading-relaxed whitespace-pre-line animate-fade-in">
+                      <div className="text-slate-600 leading-relaxed whitespace-pre-line">
                         {faq.answer}
                       </div>
                     </div>

@@ -23,8 +23,8 @@ const Index = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          (entry.target as HTMLElement).style.opacity = '1';
+          (entry.target as HTMLElement).style.transform = 'translateY(0)';
         }
       });
     }, observerOptions);
@@ -32,9 +32,10 @@ const Index = () => {
     // Observe all major sections
     const sections = document.querySelectorAll('section');
     sections.forEach((section) => {
-      section.style.opacity = '0';
-      section.style.transform = 'translateY(30px)';
-      section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      const htmlSection = section as HTMLElement;
+      htmlSection.style.opacity = '0';
+      htmlSection.style.transform = 'translateY(30px)';
+      htmlSection.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
       observer.observe(section);
     });
 

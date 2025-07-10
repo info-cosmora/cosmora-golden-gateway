@@ -2,22 +2,43 @@
 import { useState } from "react";
 import { Send } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    permanentAddress: '',
-    currentAddress: '',
-    currentITR: '',
-    currentITRValue: '',
-    reasonForApplying: ''
+    full_name: '',
+    email: '',
+    contact_number: '',
+    current_itr: '',
+    reason_for_applying: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const reasonOptions = [
+    'Investment in Real Estate',
+    'Business or Startup Ownership',
+    'Long-Term Residency',
+    'Employment in a Specialized Field',
+    'Retirement in UAE',
+    'Education Purposes',
+    'Family Reunification',
+    'High Net Worth Individual Status',
+    'Remote Work / Digital Nomad Residency',
+    'Access to Healthcare and Social Benefits',
+    'Frequent Travel Convenience',
+    'Tax Optimization',
+    'Pathway to Citizenship',
+    'Lifestyle and Quality of Life',
+    'Security and Political Stability',
+    'Other'
+  ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
-    if (!formData.name || !formData.permanentAddress || !formData.currentAddress || !formData.currentITR || !formData.reasonForApplying) {
+    if (!formData.full_name || !formData.email || !formData.contact_number || 
+        !formData.current_itr || !formData.reason_for_applying) {
       toast({
         title: "Please fill in all required fields",
         variant: "destructive",
@@ -25,23 +46,46 @@ const ContactForm = () => {
       return;
     }
 
-    // Simulate form submission
-    console.log('Form submitted:', formData);
-    
-    toast({
-      title: "Application Submitted Successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: '',
-      permanentAddress: '',
-      currentAddress: '',
-      currentITR: '',
-      currentITRValue: '',
-      reasonForApplying: ''
-    });
+    try {
+      console.log('Submitting form data:', formData);
+      
+      const { data, error } = await supabase.functions.invoke('submit-eligibility', {
+        body: formData
+      });
+
+      console.log('Supabase response:', { data, error });
+
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
+      }
+
+      toast({
+        title: "Application Submitted Successfully!",
+        description: "We'll get back to you within 24 hours. Check your email for confirmation.",
+      });
+
+      // Reset form
+      setFormData({
+        full_name: '',
+        email: '',
+        contact_number: '',
+        current_itr: '',
+        reason_for_applying: ''
+      });
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Submission Failed",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -59,60 +103,64 @@ const ContactForm = () => {
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">
-            Name *
+          <label htmlFor="full_name" className="block text-sm font-semibold text-slate-700 mb-2">
+            Full Name *
           </label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            id="full_name"
+            name="full_name"
+            value={formData.full_name}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
             placeholder="Enter your full name"
+            disabled={isSubmitting}
           />
         </div>
 
         <div>
-          <label htmlFor="permanentAddress" className="block text-sm font-semibold text-slate-700 mb-2">
-            Permanent Address *
+          <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
+            Email Address *
           </label>
-          <textarea
-            id="permanentAddress"
-            name="permanentAddress"
-            rows={3}
-            value={formData.permanentAddress}
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300 resize-vertical"
-            placeholder="Enter your permanent address"
+            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
+            placeholder="Enter your email address"
+            disabled={isSubmitting}
           />
         </div>
 
         <div>
-          <label htmlFor="currentAddress" className="block text-sm font-semibold text-slate-700 mb-2">
-            Current Address *
+          <label htmlFor="contact_number" className="block text-sm font-semibold text-slate-700 mb-2">
+            Contact Number *
           </label>
-          <textarea
-            id="currentAddress"
-            name="currentAddress"
-            rows={3}
-            value={formData.currentAddress}
+          <input
+            type="tel"
+            id="contact_number"
+            name="contact_number"
+            value={formData.contact_number}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300 resize-vertical"
-            placeholder="Enter your current address"
+            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
+            placeholder="Enter your contact number"
+            disabled={isSubmitting}
           />
         </div>
 
         <div>
-          <label htmlFor="currentITR" className="block text-sm font-semibold text-slate-700 mb-2">
+          <label htmlFor="current_itr" className="block text-sm font-semibold text-slate-700 mb-2">
             Current ITR *
           </label>
           <select
-            id="currentITR"
-            name="currentITR"
-            value={formData.currentITR}
+            id="current_itr"
+            name="current_itr"
+            value={formData.current_itr}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
+            disabled={isSubmitting}
           >
             <option value="">Select ITR range</option>
             <option value="greater-than-1-crore">Greater than 1 crore</option>
@@ -121,44 +169,33 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="currentITRValue" className="block text-sm font-semibold text-slate-700 mb-2">
-            Current ITR Value
-          </label>
-          <input
-            type="text"
-            id="currentITRValue"
-            name="currentITRValue"
-            value={formData.currentITRValue}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
-            placeholder="Enter your ITR value"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="reasonForApplying" className="block text-sm font-semibold text-slate-700 mb-2">
+          <label htmlFor="reason_for_applying" className="block text-sm font-semibold text-slate-700 mb-2">
             Reason for Applying for Golden Visa *
           </label>
           <select
-            id="reasonForApplying"
-            name="reasonForApplying"
-            value={formData.reasonForApplying}
+            id="reason_for_applying"
+            name="reason_for_applying"
+            value={formData.reason_for_applying}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
+            disabled={isSubmitting}
           >
             <option value="">Select reason</option>
-            <option value="family-reasons">Family Reasons</option>
-            <option value="business-reasons">Business Reasons</option>
-            <option value="settlement-reasons">Settlement Reasons</option>
+            {reasonOptions.map((reason) => (
+              <option key={reason} value={reason}>
+                {reason}
+              </option>
+            ))}
           </select>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-8 py-4 rounded-lg text-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+          disabled={isSubmitting}
+          className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-8 py-4 rounded-lg text-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
           <Send className="h-5 w-5" />
-          Submit Application
+          {isSubmitting ? 'Submitting...' : 'Submit Application'}
         </button>
       </form>
     </div>

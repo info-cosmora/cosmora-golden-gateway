@@ -1,9 +1,26 @@
 
-import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleFooterLinkClick = (sectionId: string) => {
+    scrollToSection(sectionId);
+  };
 
   return (
     <footer className="bg-slate-900 text-white">
@@ -49,7 +66,15 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => document.getElementById('golden-visa')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => handleFooterLinkClick('about-us')}
+                  className="text-slate-300 hover:text-yellow-400 transition-colors"
+                >
+                  About Us
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleFooterLinkClick('golden-visa-benefits')}
                   className="text-slate-300 hover:text-yellow-400 transition-colors"
                 >
                   Golden Visa
@@ -57,10 +82,18 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => handleFooterLinkClick('testimonials')}
                   className="text-slate-300 hover:text-yellow-400 transition-colors"
                 >
-                  Testimonials
+                  Client Testimonials
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleFooterLinkClick('faq')}
+                  className="text-slate-300 hover:text-yellow-400 transition-colors"
+                >
+                  FAQ
                 </button>
               </li>
               <li>
@@ -76,24 +109,16 @@ const Footer = () => {
             <h4 className="font-semibold mb-6">Services</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-slate-300 hover:text-yellow-400 transition-colors">
-                  Investment Advisory
-                </a>
+                <span className="text-slate-300">Investment Advisory</span>
               </li>
               <li>
-                <a href="#" className="text-slate-300 hover:text-yellow-400 transition-colors">
-                  Document Processing
-                </a>
+                <span className="text-slate-300">Document Processing</span>
               </li>
               <li>
-                <a href="#" className="text-slate-300 hover:text-yellow-400 transition-colors">
-                  Legal Consultation
-                </a>
+                <span className="text-slate-300">Legal Consultation</span>
               </li>
               <li>
-                <a href="#" className="text-slate-300 hover:text-yellow-400 transition-colors">
-                  Application Support
-                </a>
+                <span className="text-slate-300">Application Support</span>
               </li>
             </ul>
           </div>
@@ -102,54 +127,18 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-6">Contact Information</h4>
             <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-yellow-400 mt-1 flex-shrink-0" />
-                <div>
-                  <p className="text-slate-300">Dubai Office:</p>
-                  <p className="text-sm text-slate-400">Business Bay, Dubai, UAE</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-yellow-400 mt-1 flex-shrink-0" />
-                <div>
-                  <p className="text-slate-300">India Office:</p>
-                  <p className="text-sm text-slate-400">Mumbai, Maharashtra, India</p>
-                </div>
-              </div>
-              
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-yellow-400" />
-                <p className="text-slate-300">+971 50 123 4567</p>
+                <div>
+                  <p className="text-slate-300">+91 8287344367</p>
+                  <p className="text-slate-300">+91 884 748 6673</p>
+                </div>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-yellow-400" />
-                <p className="text-slate-300">info@cosmora.ae</p>
+                <p className="text-slate-300">info@cosmora.global</p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Newsletter */}
-        <div className="border-t border-slate-800 mt-12 pt-8">
-          <div className="max-w-md mx-auto text-center md:text-left md:max-w-none md:flex md:items-center md:justify-between">
-            <div className="mb-6 md:mb-0">
-              <h4 className="font-semibold mb-2">Stay Updated</h4>
-              <p className="text-slate-400 text-sm">
-                Subscribe to our newsletter for the latest UAE Golden Visa updates
-              </p>
-            </div>
-            
-            <div className="flex max-w-md mx-auto md:mx-0">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-l-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:border-yellow-400"
-              />
-              <button className="px-6 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 rounded-r-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300">
-                Subscribe
-              </button>
             </div>
           </div>
         </div>
@@ -158,21 +147,15 @@ const Footer = () => {
         <div className="border-t border-slate-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm">
-              <a href="#" className="text-slate-400 hover:text-yellow-400 transition-colors">
-                About Us
-              </a>
-              <a href="#" className="text-slate-400 hover:text-yellow-400 transition-colors">
-                FAQ
-              </a>
-              <a href="#" className="text-slate-400 hover:text-yellow-400 transition-colors">
+              <Link to="/licenses" className="text-slate-400 hover:text-yellow-400 transition-colors">
                 Licenses & Certifications
-              </a>
-              <a href="#" className="text-slate-400 hover:text-yellow-400 transition-colors">
+              </Link>
+              <Link to="/privacy-policy" className="text-slate-400 hover:text-yellow-400 transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-slate-400 hover:text-yellow-400 transition-colors">
+              </Link>
+              <Link to="/terms-conditions" className="text-slate-400 hover:text-yellow-400 transition-colors">
                 Terms & Conditions
-              </a>
+              </Link>
             </div>
             
             <p className="text-slate-400 text-sm">

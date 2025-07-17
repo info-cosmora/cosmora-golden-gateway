@@ -27,7 +27,12 @@ const Contact = () => {
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Information & Why Choose Cosmora */}
+            {/* Contact Form - Now on the left */}
+            <div>
+              <ContactForm />
+            </div>
+
+            {/* Contact Information & Why Choose Cosmora - Now on the right */}
             <div className="space-y-12">
               {/* Contact Information */}
               <div className="bg-white p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
@@ -38,8 +43,8 @@ const Contact = () => {
                 <div className="space-y-6">
                   {/* Phone Numbers */}
                   <div className="flex items-start space-x-4 group hover:bg-slate-50 p-4 rounded-lg transition-all duration-300">
-                    <div className="bg-navy-600 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                      <Phone className="h-6 w-6 text-white" />
+                    <div className="bg-navy-600 p-3 rounded-lg group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-yellow-500 transition-all duration-300">
+                      <Phone className="h-6 w-6 text-white group-hover:text-slate-900 transition-colors duration-300" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Phone</h3>
@@ -50,8 +55,8 @@ const Contact = () => {
 
                   {/* Email */}
                   <div className="flex items-start space-x-4 group hover:bg-slate-50 p-4 rounded-lg transition-all duration-300">
-                    <div className="bg-navy-600 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                      <Mail className="h-6 w-6 text-white" />
+                    <div className="bg-navy-600 p-3 rounded-lg group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-yellow-500 transition-all duration-300">
+                      <Mail className="h-6 w-6 text-white group-hover:text-slate-900 transition-colors duration-300" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Email</h3>
@@ -64,7 +69,7 @@ const Contact = () => {
               {/* Why Choose Cosmora */}
               <div className="bg-gradient-to-br from-navy-600 to-slate-800 p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl text-white">
                 <h2 className="text-3xl font-bold mb-8">
-                  Why Choose Cosmora?
+                  Why Choose Cosmora Global?
                 </h2>
                 
                 <div className="space-y-4">
@@ -86,11 +91,6 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Contact Form */}
-            <div>
-              <ContactForm />
             </div>
           </div>
         </div>

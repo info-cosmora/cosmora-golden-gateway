@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from "react-router-dom";
-import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -30,25 +30,6 @@ const Footer = () => {
               <p className="text-slate-300 leading-relaxed">
                 Premium UAE Golden Visa services for discerning individuals seeking elite residency solutions.
               </p>
-            </div>
-            
-            {/* Social Media */}
-            <div>
-              <h4 className="font-semibold mb-4">Follow Us</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-500 hover:text-slate-900 transition-all duration-300">
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-500 hover:text-slate-900 transition-all duration-300">
-                  <Twitter className="h-5 w-5" />
-                </a>
-                <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-500 hover:text-slate-900 transition-all duration-300">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-500 hover:text-slate-900 transition-all duration-300">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </div>
             </div>
           </div>
 

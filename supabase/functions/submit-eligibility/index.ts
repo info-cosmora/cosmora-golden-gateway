@@ -70,9 +70,9 @@ const handler = async (req: Request): Promise<Response> => {
     // Send confirmation email
     try {
       const emailResponse = await resend.emails.send({
-        from: 'Cosmora <info@cosmora.global>',
+        from: 'Terra-Nova <info@terranova.global>',
         to: [submissionData.email],
-        subject: 'Thank you for submitting your details to Cosmora',
+        subject: 'Thank you for submitting your details to Terra-Nova',
         html: `
           <div style="font-family: sans-serif; padding: 24px; border: 1px solid #eee; border-radius: 8px;">
             <h2 style="color: navy;">Thank You for Reaching Out!</h2>
@@ -80,12 +80,12 @@ const handler = async (req: Request): Promise<Response> => {
             <p>We've successfully received your eligibility form. Our team is reviewing your information and will get in touch with you shortly.</p>
             <p>Meanwhile, if you have any urgent queries, feel free to contact us at:</p>
             <ul>
-              <li>Email: <a href="mailto:info@cosmora.global">info@cosmora.global</a></li>
+              <li>Email: <a href="mailto:info@terranova.global">info@terranova.global</a></li>
               <li>Phone: +91 8287344367 / +91 884 748 6673</li>
             </ul>
             <br/>
             <p>Warm regards,</p>
-            <p><strong>The Cosmora Team</strong></p>
+            <p><strong>The Terra-Nova Team</strong></p>
           </div>
         `
       });

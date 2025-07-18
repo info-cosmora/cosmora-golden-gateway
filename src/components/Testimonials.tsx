@@ -18,14 +18,14 @@ const Testimonials = () => {
       name: "Sarah M.",
       title: "Investment Banker",
       location: "Delhi, India",
-      content: "The team at Cosmora provided exceptional guidance throughout my application. Their expertise and professionalism made what seemed like a complex process remarkably straightforward.",
+      content: "The team at Terra-Nova provided exceptional guidance throughout my application. Their expertise and professionalism made what seemed like a complex process remarkably straightforward.",
       rating: 5
     },
     {
       name: "Raj S.",
       title: "Real Estate Investor",
       location: "London, UK",
-      content: "Outstanding service from start to finish. Cosmora's team handled every detail with precision and kept me informed at every step. Highly recommend their services.",
+      content: "Outstanding service from start to finish. Terra-Nova's team handled every detail with precision and kept me informed at every step. Highly recommend their services.",
       rating: 5
     }
   ];
@@ -62,7 +62,7 @@ const Testimonials = () => {
             Client Success Stories
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Discover how Cosmora Global has helped hundreds of clients achieve their UAE Golden Visa dreams with our premium service.
+            Discover how Terra-Nova Global has helped hundreds of clients achieve their UAE Golden Visa dreams with our premium service.
           </p>
         </div>
 

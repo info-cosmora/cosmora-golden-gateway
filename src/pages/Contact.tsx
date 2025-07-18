@@ -32,7 +32,7 @@ const Contact = () => {
               <ContactForm />
             </div>
 
-            {/* Contact Information & Why Choose Cosmora - Now on the right */}
+            {/* Contact Information & Why Choose Terra-Nova - Now on the right */}
             <div className="space-y-12">
               {/* Contact Information */}
               <div className="bg-white p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
@@ -60,16 +60,16 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Email</h3>
-                      <p className="text-slate-600">info@cosmora.global</p>
+                      <p className="text-slate-600">info@terranova.global</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Why Choose Cosmora */}
+              {/* Why Choose Terra-Nova */}
               <div className="bg-gradient-to-br from-navy-600 to-slate-800 p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl text-white">
                 <h2 className="text-3xl font-bold mb-8">
-                  Why Choose Cosmora Global?
+                  Why Choose Terra-Nova Global?
                 </h2>
                 
                 <div className="space-y-4">

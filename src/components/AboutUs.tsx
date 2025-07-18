@@ -37,7 +37,7 @@ const AboutUs = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xl text-slate-600 leading-relaxed max-w-4xl mx-auto">
-              Cosmora Global is a trusted advisory firm specializing in UAE Golden Visa services, empowering investors, professionals, entrepreneurs, and families to secure long-term residency in Dubai and across the Emirates. With a commitment to transparency, speed, and personalized guidance, Cosmora Global streamlines the complex Golden Visa process into a seamless experience – from eligibility assessment to final approval. Our team combines deep regulatory expertise with a client-first approach to ensure every application is positioned for success, helping you unlock the limitless opportunities of UAE residency with confidence.
+              Terra-Nova Global is a trusted advisory firm specializing in UAE Golden Visa services, empowering investors, professionals, entrepreneurs, and families to secure long-term residency in Dubai and across the Emirates. With a commitment to transparency, speed, and personalized guidance, Terra-Nova Global streamlines the complex Golden Visa process into a seamless experience – from eligibility assessment to final approval. Our team combines deep regulatory expertise with a client-first approach to ensure every application is positioned for success, helping you unlock the limitless opportunities of UAE residency with confidence.
             </p>
           </div>
 

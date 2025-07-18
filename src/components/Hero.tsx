@@ -44,7 +44,7 @@ const Hero = () => {
           {/* Brand - Static Logo */}
           <div className="mb-6">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-3 tracking-tight">
-              COSMORA
+              TERRA-NOVA
             </h1>
             <div className="text-xl md:text-2xl font-light text-yellow-400 mb-3 tracking-wide">
               GLOBAL

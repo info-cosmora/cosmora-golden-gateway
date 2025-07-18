@@ -26,7 +26,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl font-bold mb-4">COSMORA GLOBAL</h3>
+              <h3 className="text-2xl font-bold mb-4">TERRA-NOVA GLOBAL</h3>
               <p className="text-slate-300 leading-relaxed">
                 Premium UAE Golden Visa services for discerning individuals seeking elite residency solutions.
               </p>
@@ -115,7 +115,7 @@ const Footer = () => {
               
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-yellow-400" />
-                <p className="text-slate-300">info@cosmora.global</p>
+                <p className="text-slate-300">info@terranova.global</p>
               </div>
             </div>
           </div>
@@ -137,7 +137,7 @@ const Footer = () => {
             </div>
             
             <p className="text-slate-400 text-sm">
-              © {currentYear} Cosmora Global. All rights reserved.
+              © {currentYear} Terra-Nova Global. All rights reserved.
             </p>
           </div>
         </div>

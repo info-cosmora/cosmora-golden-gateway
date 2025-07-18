@@ -21,7 +21,7 @@ const PrivacyPolicy = () => {
                   If not accessible then contact via our mobile number: 
                   <span className="font-semibold text-navy-600"> +91 8287344367</span> or 
                   <span className="font-semibold text-navy-600"> +91 884 748 6673</span> or 
-                  email id: <span className="font-semibold text-navy-600">info@cosmora.global</span>
+                  email id: <span className="font-semibold text-navy-600">info@terranova.global</span>
                 </p>
               </div>
             </div>

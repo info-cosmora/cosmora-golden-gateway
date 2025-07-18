@@ -26,7 +26,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="text-2xl font-bold text-slate-900">
-            COSMORA GLOBAL
+            TERRA-NOVA GLOBAL
           </Link>
 
           {/* Desktop Navigation */}

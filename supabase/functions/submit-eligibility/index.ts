@@ -30,6 +30,12 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const webhookUrl = Deno.env.get('WEBHOOK_URL');
+    console.log('Environment variables check:', {
+      hasWebhookUrl: !!webhookUrl,
+      webhookUrlLength: webhookUrl?.length || 0,
+      allEnvKeys: Object.keys(Deno.env.toObject()).filter(key => key.includes('WEBHOOK'))
+    });
+    
     if (!webhookUrl) {
       console.error('WEBHOOK_URL environment variable not set');
       return new Response(JSON.stringify({ error: 'Configuration error' }), {

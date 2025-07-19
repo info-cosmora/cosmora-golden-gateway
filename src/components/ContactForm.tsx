@@ -6,11 +6,11 @@ import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    full_name: '',
-    email: '',
-    contact_number: '',
-    current_itr: '',
-    reason_for_applying: ''
+    name: '',
+    email_from: '',
+    phone: '',
+    x_studio_itr: '',
+    x_studio_reason_for_applying_for_golden_visa: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -37,8 +37,8 @@ const ContactForm = () => {
     e.preventDefault();
     
     // Basic validation
-    if (!formData.full_name || !formData.email || !formData.contact_number || 
-        !formData.current_itr || !formData.reason_for_applying) {
+    if (!formData.name || !formData.email_from || !formData.phone || 
+        !formData.x_studio_itr || !formData.x_studio_reason_for_applying_for_golden_visa) {
       toast({
         title: "Please fill in all required fields",
         variant: "destructive",
@@ -64,16 +64,16 @@ const ContactForm = () => {
 
       toast({
         title: "Application Submitted Successfully!",
-        description: "We'll get back to you within 24 hours. Check your email for confirmation.",
+        description: "We'll get back to you within 24 hours.",
       });
 
       // Reset form
       setFormData({
-        full_name: '',
-        email: '',
-        contact_number: '',
-        current_itr: '',
-        reason_for_applying: ''
+        name: '',
+        email_from: '',
+        phone: '',
+        x_studio_itr: '',
+        x_studio_reason_for_applying_for_golden_visa: ''
       });
 
     } catch (error) {
@@ -103,14 +103,14 @@ const ContactForm = () => {
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="full_name" className="block text-sm font-semibold text-slate-700 mb-2">
+          <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">
             Full Name *
           </label>
           <input
             type="text"
-            id="full_name"
-            name="full_name"
-            value={formData.full_name}
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
             placeholder="Enter your full name"
@@ -119,14 +119,14 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
+          <label htmlFor="email_from" className="block text-sm font-semibold text-slate-700 mb-2">
             Email Address *
           </label>
           <input
             type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+            id="email_from"
+            name="email_from"
+            value={formData.email_from}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
             placeholder="Enter your email address"
@@ -135,14 +135,14 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="contact_number" className="block text-sm font-semibold text-slate-700 mb-2">
+          <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-2">
             Contact Number *
           </label>
           <input
             type="tel"
-            id="contact_number"
-            name="contact_number"
-            value={formData.contact_number}
+            id="phone"
+            name="phone"
+            value={formData.phone}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
             placeholder="Enter your contact number"
@@ -151,31 +151,31 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="current_itr" className="block text-sm font-semibold text-slate-700 mb-2">
+          <label htmlFor="x_studio_itr" className="block text-sm font-semibold text-slate-700 mb-2">
             Current ITR *
           </label>
           <select
-            id="current_itr"
-            name="current_itr"
-            value={formData.current_itr}
+            id="x_studio_itr"
+            name="x_studio_itr"
+            value={formData.x_studio_itr}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
             disabled={isSubmitting}
           >
             <option value="">Select ITR range</option>
-            <option value="greater-than-1-crore">Greater than 1 crore</option>
-            <option value="less-than-1-crore">Less than 1 crore</option>
+            <option value="greater than 1 crore">Greater than 1 crore</option>
+            <option value="lesser than 1 crore">Lesser than 1 crore</option>
           </select>
         </div>
 
         <div>
-          <label htmlFor="reason_for_applying" className="block text-sm font-semibold text-slate-700 mb-2">
+          <label htmlFor="x_studio_reason_for_applying_for_golden_visa" className="block text-sm font-semibold text-slate-700 mb-2">
             Reason for Applying for Golden Visa *
           </label>
           <select
-            id="reason_for_applying"
-            name="reason_for_applying"
-            value={formData.reason_for_applying}
+            id="x_studio_reason_for_applying_for_golden_visa"
+            name="x_studio_reason_for_applying_for_golden_visa"
+            value={formData.x_studio_reason_for_applying_for_golden_visa}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
             disabled={isSubmitting}

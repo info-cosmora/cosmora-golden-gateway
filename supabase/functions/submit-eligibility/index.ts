@@ -1,7 +1,4 @@
-
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { Resend } from "npm:resend@2.0.0";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -9,11 +6,11 @@ const corsHeaders = {
 };
 
 interface EligibilitySubmission {
-  full_name: string;
-  email: string;
-  contact_number: string;
-  current_itr: string;
-  reason_for_applying: string;
+  name: string;
+  email_from: string;
+  phone: string;
+  x_studio_itr: string;
+  x_studio_reason_for_applying_for_golden_visa: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -32,74 +29,61 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    const resendApiKey = Deno.env.get('RESEND_API_KEY')!;
-
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-    const resend = new Resend(resendApiKey);
+    const webhookUrl = Deno.env.get('WEBHOOK_URL');
+    if (!webhookUrl) {
+      console.error('WEBHOOK_URL environment variable not set');
+      return new Response(JSON.stringify({ error: 'Configuration error' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders },
+      });
+    }
 
     const submissionData: EligibilitySubmission = await req.json();
     console.log('Submission data received:', submissionData);
 
     // Validate required fields
-    if (!submissionData.full_name || !submissionData.email || !submissionData.contact_number || 
-        !submissionData.current_itr || !submissionData.reason_for_applying) {
+    if (!submissionData.name || !submissionData.email_from || !submissionData.phone || 
+        !submissionData.x_studio_itr || !submissionData.x_studio_reason_for_applying_for_golden_visa) {
       return new Response(JSON.stringify({ error: 'All fields are required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
       });
     }
 
-    // Insert into Supabase
-    const { data, error: dbError } = await supabase
-      .from('eligibility_submissions')
-      .insert([submissionData])
-      .select();
+    // Validate ITR values
+    const validItrValues = ['greater than 1 crore', 'lesser than 1 crore'];
+    if (!validItrValues.includes(submissionData.x_studio_itr)) {
+      return new Response(JSON.stringify({ error: 'Invalid ITR value' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders },
+      });
+    }
 
-    if (dbError) {
-      console.error('Database error:', dbError);
-      return new Response(JSON.stringify({ error: 'Failed to save submission' }), {
+    // Send to webhook
+    console.log('Sending to webhook:', webhookUrl);
+    
+    const webhookResponse = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(submissionData),
+    });
+
+    if (!webhookResponse.ok) {
+      console.error('Webhook request failed:', webhookResponse.status, webhookResponse.statusText);
+      return new Response(JSON.stringify({ error: 'Failed to submit to webhook' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
       });
     }
 
-    console.log('Data saved to database:', data);
-
-    // Send confirmation email
-    try {
-      const emailResponse = await resend.emails.send({
-        from: 'Terra-Nova <info@terranova.global>',
-        to: [submissionData.email],
-        subject: 'Thank you for submitting your details to Terra-Nova',
-        html: `
-          <div style="font-family: sans-serif; padding: 24px; border: 1px solid #eee; border-radius: 8px;">
-            <h2 style="color: navy;">Thank You for Reaching Out!</h2>
-            <p>Hi <strong>${submissionData.full_name}</strong>,</p>
-            <p>We've successfully received your eligibility form. Our team is reviewing your information and will get in touch with you shortly.</p>
-            <p>Meanwhile, if you have any urgent queries, feel free to contact us at:</p>
-            <ul>
-              <li>Email: <a href="mailto:info@terranova.global">info@terranova.global</a></li>
-              <li>Phone: +91 8287344367 / +91 884 748 6673</li>
-            </ul>
-            <br/>
-            <p>Warm regards,</p>
-            <p><strong>The Terra-Nova Team</strong></p>
-          </div>
-        `
-      });
-
-      console.log('Email sent successfully:', emailResponse);
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-      // Don't fail the request if email fails, but log it
-    }
+    const webhookResponseData = await webhookResponse.text();
+    console.log('Webhook response:', webhookResponseData);
 
     return new Response(JSON.stringify({ 
       success: true, 
-      message: 'Submission received successfully',
-      data: data 
+      message: 'Submission sent successfully',
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json', ...corsHeaders },

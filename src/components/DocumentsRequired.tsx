@@ -2,37 +2,16 @@
 import { FileText, CreditCard, GraduationCap, Heart } from "lucide-react";
 
 const DocumentsRequired = () => {
-  const documentCategories = [
-    {
-      icon: FileText,
-      title: "Personal ID/Passport",
-      documents: [
-        "Valid passport with minimum 6 months validity",
-        "Recent passport-sized photographs",
-        "Emirates ID (if applicable)",
-        "Birth certificate (attested)"
-      ]
-    },
-    {
-      icon: GraduationCap,
-      title: "Education/Job Letters",
-      documents: [
-        "Educational certificates (attested)",
-        "Professional qualifications",
-        "Experience certificates",
-        "Employment letters and contracts"
-      ]
-    },
-    {
-      icon: CreditCard,
-      title: "Financial Proof/ITR",
-      documents: [
-        "Income Tax Returns (ITR)",
-        "Bank statements (last 6 months)",
-        "Investment portfolio statements",
-        "Property ownership documents"
-      ]
-    }
+  const requiredDocuments = [
+    "Passport copy",
+    "Current UAE visa (if applicable)",
+    "Emirates ID (if applicable)", 
+    "Recent passport-size photograph",
+    "Proof of income (salary slips, bank statements, or company ownership documents)",
+    "Academic or professional certifications (if applicable)",
+    "Company trade license or shareholder certificate (for business owners)",
+    "Letter of employment or offer letter (for professionals)",
+    "CV/resume (for professionals or academics)"
   ];
 
   return (
@@ -44,31 +23,26 @@ const DocumentsRequired = () => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {documentCategories.map((category, index) => (
-            <div
-              key={index}
-              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
-            >
-              <div className="flex items-center mb-6">
-                <div className="bg-navy-600 p-3 rounded-lg group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-yellow-500 transition-all duration-300">
-                  <category.icon className="h-6 w-6 text-white group-hover:text-slate-900" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 ml-4">
-                  {category.title}
-                </h3>
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <div className="flex items-center mb-6">
+              <div className="bg-navy-600 p-3 rounded-lg">
+                <FileText className="h-6 w-6 text-white" />
               </div>
-              
-              <ul className="space-y-3">
-                {category.documents.map((document, docIndex) => (
-                  <li key={docIndex} className="flex items-start">
-                    <div className="w-2 h-2 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span className="text-slate-600 leading-relaxed">{document}</span>
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-2xl font-bold text-slate-900 ml-4">
+                Required Documents Checklist
+              </h3>
             </div>
-          ))}
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              {requiredDocuments.map((document, index) => (
+                <div key={index} className="flex items-start p-4 border border-slate-200 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-all duration-300">
+                  <div className="w-2 h-2 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-slate-700 leading-relaxed">{document}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="text-center mt-12">

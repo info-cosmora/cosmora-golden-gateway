@@ -26,7 +26,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl font-bold mb-4">TERRA-NOVA GLOBAL</h3>
+              <h3 className="text-2xl font-bold mb-4">TERRA NOVA GLOBAL</h3>
               <p className="text-slate-300 leading-relaxed">
                 Premium UAE Golden Visa services for discerning individuals seeking elite residency solutions.
               </p>
@@ -115,7 +115,7 @@ const Footer = () => {
               
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-yellow-400" />
-                <p className="text-slate-300">info@terranova.global</p>
+                <p className="text-slate-300">info@terra-nova.global</p>
               </div>
             </div>
           </div>
@@ -125,19 +125,11 @@ const Footer = () => {
         <div className="border-t border-slate-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm">
-              <Link to="/licenses" className="text-slate-400 hover:text-yellow-400 transition-colors">
-                Licenses & Certifications
-              </Link>
-              <Link to="/privacy-policy" className="text-slate-400 hover:text-yellow-400 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms-conditions" className="text-slate-400 hover:text-yellow-400 transition-colors">
-                Terms & Conditions
-              </Link>
+              {/* Removed footer links as requested */}
             </div>
             
             <p className="text-slate-400 text-sm">
-              © {currentYear} Terra-Nova Global. All rights reserved.
+              © {currentYear} Terra Nova Global. All rights reserved.
             </p>
           </div>
         </div>

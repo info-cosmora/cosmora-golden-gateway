@@ -9,27 +9,20 @@ const ContactForm = () => {
     name: '',
     email_from: '',
     phone: '',
-    x_studio_itr: '',
-    x_studio_reason_for_applying_for_golden_visa: ''
+    annual_income: '',
+    reasons: [] as string[]
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const reasonOptions = [
-    'Investment in Real Estate',
-    'Business or Startup Ownership',
+    'Attractive Tax Benefits',
     'Long-Term Residency',
-    'Employment in a Specialized Field',
-    'Retirement in UAE',
-    'Education Purposes',
-    'Family Reunification',
-    'High Net Worth Individual Status',
-    'Remote Work / Digital Nomad Residency',
-    'Access to Healthcare and Social Benefits',
-    'Frequent Travel Convenience',
-    'Tax Optimization',
-    'Pathway to Citizenship',
-    'Lifestyle and Quality of Life',
-    'Security and Political Stability',
+    'Real Estate Investment Opportunities',
+    'Family Security and Quality Education',
+    'Business and Entrepreneurship Opportunities',
+    'Global Access and Travel Flexibility',
+    'High Standard of Living and Infrastructure',
+    'Residency Backup and Plan B',
     'Other'
   ];
 
@@ -38,7 +31,7 @@ const ContactForm = () => {
     
     // Basic validation
     if (!formData.name || !formData.email_from || !formData.phone || 
-        !formData.x_studio_itr || !formData.x_studio_reason_for_applying_for_golden_visa) {
+        !formData.annual_income || formData.reasons.length === 0) {
       toast({
         title: "Please fill in all required fields",
         variant: "destructive",
@@ -49,10 +42,19 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      console.log('Submitting form data:', formData);
+      // Transform data for webhook
+      const webhookData = {
+        name: formData.name,
+        email_from: formData.email_from,
+        phone: formData.phone,
+        x_studio_itr: formData.annual_income,
+        x_studio_reason_for_applying_for_golden_visa: formData.reasons.join(', ')
+      };
+      
+      console.log('Submitting form data:', webhookData);
       
       const { data, error } = await supabase.functions.invoke('submit-eligibility', {
-        body: formData
+        body: webhookData
       });
 
       console.log('Supabase response:', { data, error });
@@ -72,8 +74,8 @@ const ContactForm = () => {
         name: '',
         email_from: '',
         phone: '',
-        x_studio_itr: '',
-        x_studio_reason_for_applying_for_golden_visa: ''
+        annual_income: '',
+        reasons: []
       });
 
     } catch (error) {
@@ -95,10 +97,21 @@ const ContactForm = () => {
     });
   };
 
+  const handleReasonChange = (reason: string) => {
+    const newReasons = formData.reasons.includes(reason)
+      ? formData.reasons.filter(r => r !== reason)
+      : [...formData.reasons, reason];
+    
+    setFormData({
+      ...formData,
+      reasons: newReasons
+    });
+  };
+
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl">
+    <div className="bg-white p-8 rounded-2xl shadow-xl" id="contact-section">
       <h2 className="text-3xl font-bold text-slate-900 mb-8">
-        Check Your Eligibility
+        Contact Us
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -151,42 +164,44 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="x_studio_itr" className="block text-sm font-semibold text-slate-700 mb-2">
-            Current ITR *
+          <label htmlFor="annual_income" className="block text-sm font-semibold text-slate-700 mb-2">
+            Annual Income *
           </label>
           <select
-            id="x_studio_itr"
-            name="x_studio_itr"
-            value={formData.x_studio_itr}
+            id="annual_income"
+            name="annual_income"
+            value={formData.annual_income}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
             disabled={isSubmitting}
           >
-            <option value="">Select ITR range</option>
-            <option value="greater than 1 crore">Greater than 1 crore</option>
-            <option value="lesser than 1 crore">Lesser than 1 crore</option>
+            <option value="">Select income range</option>
+            <option value="greater than 1 crore">Greater than 100,000 USD</option>
+            <option value="lesser than 1 crore">Less than 100,000 USD</option>
           </select>
         </div>
 
         <div>
-          <label htmlFor="x_studio_reason_for_applying_for_golden_visa" className="block text-sm font-semibold text-slate-700 mb-2">
-            Reason for Applying for Golden Visa *
+          <label className="block text-sm font-semibold text-slate-700 mb-3">
+            Reason for Applying for Golden Visa * (Select all that apply)
           </label>
-          <select
-            id="x_studio_reason_for_applying_for_golden_visa"
-            name="x_studio_reason_for_applying_for_golden_visa"
-            value={formData.x_studio_reason_for_applying_for_golden_visa}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent transition-all duration-300"
-            disabled={isSubmitting}
-          >
-            <option value="">Select reason</option>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {reasonOptions.map((reason) => (
-              <option key={reason} value={reason}>
-                {reason}
-              </option>
+              <label
+                key={reason}
+                className="flex items-center p-3 border border-slate-200 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-all duration-300 cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  checked={formData.reasons.includes(reason)}
+                  onChange={() => handleReasonChange(reason)}
+                  className="mr-3 h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-slate-300 rounded"
+                  disabled={isSubmitting}
+                />
+                <span className="text-sm text-slate-700">{reason}</span>
+              </label>
             ))}
-          </select>
+          </div>
         </div>
 
         <button

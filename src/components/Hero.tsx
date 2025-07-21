@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { ArrowRight, Award } from "lucide-react";
+import { ArrowRight, Award, Download, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import EligibilityQuiz from "./EligibilityQuiz";
 
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showQuiz, setShowQuiz] = useState(false);
   
   const backgroundImages = [
     "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
@@ -44,7 +46,7 @@ const Hero = () => {
           {/* Brand - Static Logo */}
           <div className="mb-6">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-3 tracking-tight">
-              TERRA-NOVA
+              TERRA NOVA
             </h1>
             <div className="text-xl md:text-2xl font-light text-yellow-400 mb-3 tracking-wide">
               GLOBAL
@@ -73,16 +75,42 @@ const Hero = () => {
             </p>
           </div>
 
-          {/* CTA Button - Centered */}
-          <div className="flex justify-center animate-fade-in-delayed">
-            <Link
-              to="/contact"
-              className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-8 py-4 rounded-lg text-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center gap-2 group"
-            >
-              Check Your Eligibility
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
+          {/* CTA Buttons - Inverted Triangle Layout */}
+          <div className="flex flex-col items-center animate-fade-in-delayed">
+            {/* Top Row - Two Buttons */}
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 mb-6 w-full max-w-2xl">
+              <button
+                onClick={() => setShowQuiz(true)}
+                className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 px-6 py-4 rounded-lg text-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 group"
+              >
+                Check Your Eligibility
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+              
+              <a
+                href="/terra-nova-global-brochure.pdf"
+                download
+                className="flex-1 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 group"
+              >
+                Download Brochure
+                <Download className="h-5 w-5 group-hover:translate-y-1 transition-transform duration-300" />
+              </a>
+            </div>
+            
+            {/* Bottom Row - Centered Button */}
+            <div className="flex justify-center">
+              <Link
+                to="/contact"
+                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center gap-2 group"
+              >
+                Contact Us
+                <Phone className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+              </Link>
+            </div>
           </div>
+          
+          {/* Eligibility Quiz Modal */}
+          {showQuiz && <EligibilityQuiz onClose={() => setShowQuiz(false)} />}
         </div>
       </div>
 
